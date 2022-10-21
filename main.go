@@ -148,8 +148,12 @@ func (c *cnf) deleteAllClausesByLiteral(literal int) {
 
 func (c *cnf) deleteLiteralFromAllClauses(literal int) {
 	for p := c.head; p != nil; p = p.next {
-		if i, found := p.findIndex(literal); found {
-			p.removeLiteral(i)
+		var found bool = true
+		var i int
+		for found {
+			if i, found = p.findIndex(literal); found {
+				p.removeLiteral(i)
+			}
 		}
 	}
 }
